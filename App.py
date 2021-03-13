@@ -27,14 +27,14 @@ def Index():
 def add_contact():
     if request.method == 'POST':
         nombre = request.form['nombre']
-        apellido = request.form['apellido']
         celular = request.form['celular']
         email = request.form['email']
-        password = request.form['password']
+        apellido = request.form['apellido']
+        passwordd = request.form['passwordd']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO contacts (nombre, apellido, celular, email, password) VALUES (%s,%s,%s,%s,%s)", (nombre, apellido, celular, email, password))
+        cur.execute("INSERT INTO contacts (nombre, apellido, celular, email, passwordd) VALUES (%s,%s,%s,%s,%s)", (nombre, apellido, celular, email, passwordd))
         mysql.connection.commit()
-        flash('Contacto Agregado correctamente')
+        flash('Contact Added successfully')
         return redirect(url_for('Index'))
 
 @app.route('/edit/<id>', methods = ['POST', 'GET'])
@@ -50,21 +50,21 @@ def get_contact(id):
 def update_contact(id):
     if request.method == 'POST':
         nombre = request.form['nombre']
-        apellido = request.form['apellido']
         celular = request.form['celular']
         email = request.form['email']
-        password = request.form['password']
+        apellido = request.form['apellido']
+        passwordd = request.form['passwordd']
         cur = mysql.connection.cursor()
         cur.execute("""
             UPDATE contacts
             SET nombre = %s,
-                apellido = %s,
-                celular = %s,
                 email = %s,
-                password = %s
+                celular = %s,
+                apellido = %s,
+                passwordd = %s
             WHERE id = %s
-        """, (nombre, apellido, celular, email, password, id))
-        flash('Usuario actualizado correctamente')
+        """, (nombre, email, celular, apellido, passwordd, id))
+        flash('Contact Updated Successfully')
         mysql.connection.commit()
         return redirect(url_for('Index'))
 
@@ -78,4 +78,4 @@ def delete_contact(id):
 
 # starting the app
 if __name__ == "__main__":
-    app.run(port=3000, debug=True)
+    app.run(port=3010, debug=True)
