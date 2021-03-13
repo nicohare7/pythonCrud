@@ -18,22 +18,24 @@
       <div class="card card-body">
         <form action="{{url_for('add_contact')}}" method="POST">
           <div class="form-group">
-            <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+            <input type="text" class="form-control" name="nombre" placeholder="nombre">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="apellido" placeholder="Apellido">
+            <input type="text" class="form-control" name="apellido" placeholder="apellido">
           </div>
+          
           <div class="form-group">
-            <input type="text" class="form-control" name="celular" placeholder="Celular">
+            <input type="text" class="form-control" name="celular" placeholder="celular">
           </div>
           <div class="form-group">
             <input type="text" class="form-control" name="email" placeholder="Email">
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="password">
+            <input type="text" class="form-control" name="passwordd" placeholder="passwordd">
           </div>
+        
           <button class="btn btn-primary btn-block">
-            Save 
+            Guardar 
           </button>
         </form>
       </div>
@@ -43,11 +45,12 @@
         <thead>
           <tr>
             <td>ID</td>
-            <td>Nombre</td>
-            <td>Apellido</td>
-            <td>Celular</td>
-            <td>Email</td>
-            <td>Password</td>
+            <td>nombre</td>
+            <td>apelldo</td>
+            <td>celular</td>
+            <td>email</td>
+            <td>Contrasena</td>
+            
             <td>Operations</td>
           </tr>
         </thead>
@@ -56,13 +59,15 @@
           <tr>
             <td>{{contact.0}}</td>
             <td>{{contact.1}}</td>
+            <td>{{contact.4}}</td>
             <td>{{contact.2}}</td>
             <td>{{contact.3}}</td>
-            <td>{{contact.4}}</td>
             <td>{{contact.5}}</td>
+            
+
             <td>
-              <a href="/edit/{{contact.0}}" class="btn btn-secondary">editar</a>
-              <a href="/delete/{{contact.0}}" class="btn btn-black btn-delete">Eliminar</a>
+              <a href="/edit/{{contact.0}}" class="btn btn-secondary">actualizar</a>
+              <a href="/delete/{{contact.0}}" class="btn btn-danger btn-delete">Eliminar</a>
             </td>
           </tr>
           {% endfor %}
